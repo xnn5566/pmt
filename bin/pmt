@@ -1,0 +1,144 @@
+#!/usr/bin/env node
+
+var commander = require('commander');
+var chalk = require('chalk');
+var Table = require('cli-table');
+var pkg = require('../package.json');
+
+var pmt = require('../index');
+var cst = require('../Constants');
+
+//basic infomation
+commander
+    .version(pkg.version)
+
+//options
+commander
+    .option('-a, --all', 'list all commands')
+
+//commands
+commander
+    .command('start [appName]')
+    .description('start description, 待根据CLI提供的api完善')
+    .action(function(appName, options) {
+
+        if (typeof appName == 'undefined'){
+            console.log('Please input [appName]/all after stop');
+        } else if (appName == 'all'){
+            pmt.startAppAll(pmt.disconnect);
+        } else {
+            pmt.startAppWithName(appName, pmt.disconnect);
+        }
+    });
+commander
+    .command('kill')
+    .description('kill Daemon')
+    .action(function() {
+        pmt.kill(pmt.disconnect);
+    });
+commander
+    .command('stop [appName]')
+    .action(function(appName) {
+        //kill daemon
+        if (typeof appName == 'undefined') {
+            console.log('Please input [appName]/all after stop');
+        } else if (appName == 'all'){
+            pmt.stopAppAll(pmt.disconnect);
+        } else {
+            pmt.stopAppWithName(appName, pmt.disconnect);
+        }
+    })
+
+commander
+    .command('restart [appName]')
+    .action(function(appName) {
+        //kill daemon
+        if (typeof appName == 'undefined') {
+            console.log('Please input [appName]/all after stop');
+        } else if (appName == 'all'){
+            pmt.restartAppAll(pmt.disconnect);
+        } else {
+            pmt.restartAppWithName(appName, pmt.disconnect);
+        }
+    })
+
+commander
+    .command('grestart [appName]')
+    .action(function(appName) {
+        //kill daemon
+        if (typeof appName == 'undefined') {
+            console.log('Please input [appName]/all after stop');
+        } else if (appName == 'all'){
+            pmt.gracefulRestartAppAll(pmt.disconnect);
+        } else {
+            pmt.gracefulRestartAppWithName(appName, pmt.disconnect);
+        }
+    })
+
+commander
+    .command('logs')
+    .action(function(appName) {
+        //kill daemon
+        pmt.logs();
+    })
+
+commander
+    .command('daemonlogs')
+    .action(function(appName) {
+        //kill daemon
+        pmt.daemonLogs();
+    })
+
+commander
+    .command('list')
+    .action(function() {
+        //kill daemon
+        pmt.getWorkers(function (err, workers){
+            if (err) {
+                console.err(err);
+                return;
+            }
+            var table = new Table({
+                head  : ['App Name', 'Name', 'Worker Id', 'Status', 'Pid', 'Restarted', 'Uptime'],
+                style : {head : ['gray', 'bold']}
+            });
+            for (var i in workers){
+                var time = workers[i].uptime;
+                var day = time.day == 0 ? '' : (time.day + 'd');
+                var hour = time.hour == 0 ? '' : (time.hour + 'h');
+                var minute = time.minute == 0 ? '' : (time.minute + 'm');
+                var uptime = [day, hour, minute].join('');
+                uptime = uptime == '' ? '1m' : uptime;
+                table.push([
+                    chalk.cyan(workers[i].appName),
+                    workers[i].name,
+                    workers[i].workerId,
+                    chalkStatus(workers[i].status),
+                    workers[i].pid,
+                    workers[i].restartCount,
+                    uptime,
+                ]);
+            }
+            console.log('\n' + table.toString());
+            pmt.disconnect();
+        });
+    })
+commander.parse(process.argv);
+
+function chalkStatus(status){
+    if (status == cst.ONLINE_STATUS){
+        return chalk.green(status);
+    }
+    if (status == cst.OFFLINE_STATUS){
+        return chalk.grey(status);
+    }
+    if (status == cst.STOPPING_STATUS){
+        return chalk.yellow(status);
+    }
+    if (status == cst.LAUNCHING_STATUS){
+        return chalk.yellow(status);
+    }
+    if (status == cst.ERRORED_STATUS){
+        return chalk.red(status);
+    }
+}

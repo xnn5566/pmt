@@ -1,0 +1,36 @@
+{
+  "name": "pmt",
+  "version": "0.0.14",
+  "description": "a nodejs process manager package",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^2.0.0-rc.5",
+    "chalk": "^1.1.3",
+    "cli-table": "^0.3.1",
+    "commander": "^2.9.0",
+    "eventemitter2": "^1.0.3",
+    "pidusage": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xuyanan",
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xnn5566/Titan.git"
+  },
+  "keywords": [
+    "process",
+    "manager",
+    "socket"
+  ],
+  "bugs": {
+    "url": "https://github.com/xnn5566/Titan/issues"
+  },
+  "homepage": "https://github.com/xnn5566/Titan#readme"
+}

@@ -130,7 +130,7 @@ commander
             pmt.getMonitWorkers(function (err, workers){
                 var table = new Table({
                     head  : ['App Name', 'Name', 'Status', 'Cpu', 'Memory'],
-                    colWidths: [15, 15, 10, 8, 8],
+                    colWidths: [15, 15, 12, 8, 8],
                     style : {head : ['gray', 'bold']}
                 });
                 for (var i in workers){

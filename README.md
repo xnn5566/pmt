@@ -66,6 +66,7 @@ $ pmt kill                    # kill pmt daemon
 $ pmt restart [appName]/all   # restart [appName]/all
 $ pmt grestart [appName]/all  # restart [appName]/all gracefully
 $ pmt list                    # list all workers status
+$ pmt monit                   # monit all workers status/cpu/monery
 $ pmt logs                    # tail your app log
 $ pmt daemonlogs              # tail pmt daemon log
 ```

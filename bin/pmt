@@ -130,6 +130,7 @@ commander
             pmt.getMonitWorkers(function (err, workers){
                 var table = new Table({
                     head  : ['App Name', 'Name', 'Status', 'Cpu', 'Memory'],
+                    colWidths: [15, 15, 10, 8, 8],
                     style : {head : ['gray', 'bold']}
                 });
                 for (var i in workers){
@@ -143,7 +144,7 @@ commander
                 }
                 charm.erase('screen').position(0, 0).write(table.toString() + '\n');
             });
-        }, 200);
+        }, 500);
     })
 
 commander.parse(process.argv);

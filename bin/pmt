@@ -3,8 +3,9 @@
 var commander = require('commander');
 var chalk = require('chalk');
 var Table = require('cli-table');
-var pkg = require('../package.json');
+var charm = require('charm')();
 
+var pkg = require('../package.json');
 var pmt = require('../index');
 var cst = require('../Constants');
 
@@ -30,16 +31,17 @@ commander
             pmt.startAppWithName(appName, pmt.disconnect);
         }
     });
+
 commander
     .command('kill')
     .description('kill Daemon')
     .action(function() {
         pmt.kill(pmt.disconnect);
     });
+
 commander
     .command('stop [appName]')
     .action(function(appName) {
-        //kill daemon
         if (typeof appName == 'undefined') {
             console.log('Please input [appName]/all after stop');
         } else if (appName == 'all'){
@@ -52,7 +54,6 @@ commander
 commander
     .command('restart [appName]')
     .action(function(appName) {
-        //kill daemon
         if (typeof appName == 'undefined') {
             console.log('Please input [appName]/all after stop');
         } else if (appName == 'all'){
@@ -65,7 +66,6 @@ commander
 commander
     .command('grestart [appName]')
     .action(function(appName) {
-        //kill daemon
         if (typeof appName == 'undefined') {
             console.log('Please input [appName]/all after stop');
         } else if (appName == 'all'){
@@ -78,21 +78,18 @@ commander
 commander
     .command('logs')
     .action(function(appName) {
-        //kill daemon
         pmt.logs();
     })
 
 commander
     .command('daemonlogs')
     .action(function(appName) {
-        //kill daemon
         pmt.daemonLogs();
     })
 
 commander
     .command('list')
     .action(function() {
-        //kill daemon
         pmt.getWorkers(function (err, workers){
             if (err) {
                 console.err(err);
@@ -123,6 +120,32 @@ commander
             pmt.disconnect();
         });
     })
+
+commander
+    .command('monit')
+    .action(function() {
+        charm.pipe(process.stdout);
+        charm.reset();
+        setInterval(function (){
+            pmt.getMonitWorkers(function (err, workers){
+                var table = new Table({
+                    head  : ['App Name', 'Name', 'Status', 'Cpu', 'Memory'],
+                    style : {head : ['gray', 'bold']}
+                });
+                for (var i in workers){
+                    table.push([
+                        chalk.cyan(workers[i].appName),
+                        workers[i].name,
+                        chalkStatus(workers[i].status),
+                        workers[i].cpu + '%',
+                        parseInt(workers[i].memory / 1024 / 1024) + 'MB'
+                    ]);
+                }
+                charm.erase('screen').position(0, 0).write(table.toString() + '\n');
+            });
+        }, 200);
+    })
+
 commander.parse(process.argv);
 
 function chalkStatus(status){

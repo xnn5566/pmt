@@ -1,11 +1,12 @@
 {
   "name": "pmt",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "a nodejs process manager package",
   "main": "index.js",
   "dependencies": {
     "async": "^2.0.0-rc.5",
     "chalk": "^1.1.3",
+    "charm": "^1.0.1",
     "cli-table": "^0.3.1",
     "commander": "^2.9.0",
     "eventemitter2": "^1.0.3",
@@ -22,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xnn5566/Titan.git"
+    "url": "git+https://github.com/xnn5566/pmt.git"
   },
   "keywords": [
     "process",
@@ -30,7 +31,7 @@
     "socket"
   ],
   "bugs": {
-    "url": "https://github.com/xnn5566/Titan/issues"
+    "url": "https://github.com/xnn5566/pmt/issues"
   },
-  "homepage": "https://github.com/xnn5566/Titan#readme"
+  "homepage": "https://github.com/xnn5566/pmt#readme"
 }

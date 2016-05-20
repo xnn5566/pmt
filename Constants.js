@@ -25,9 +25,9 @@ var Constants = {
     ERRORED_STATUS         : 'errored',
 
     // log prefix
-    PREFIX_CLI_INFO        : '[TITAN]',
-    PREFIX_CLI_ERROR       : '[TITAN][ERROR]',
-    PREFIX_CLI_WARN        : '[TITAN][WARN]',
+    PREFIX_CLI_INFO        : '[PMT]',
+    PREFIX_CLI_ERROR       : '[PMT][ERROR]',
+    PREFIX_CLI_WARN        : '[PMT][WARN]',
 
     PREFIX_DAEMON_INFO     : '[DAEMON]',
     PREFIX_DAEMON_ERROR    : '[DAEMON][ERROR]',

@@ -1,6 +1,6 @@
 {
   "name": "pmt",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "a nodejs process manager package",
   "main": "index.js",
   "dependencies": {

@@ -7,9 +7,9 @@ if (process.env.TITAN_ROOT_PATH) {
     ROOTPATH = process.env.TITAN_ROOT_PATH;
 } else {
     if (process.env.HOME) {
-        ROOTPATH = p.resolve(process.env.HOME, '.titan');
+        ROOTPATH = p.resolve(process.env.HOME, '.pmt');
     } else {
-        ROOTPATH = p.resolve('/etc', '.titan');
+        ROOTPATH = p.resolve('/etc', '.pmt');
     }
     process.env.TITAN_ROOT_PATH = ROOTPATH;
 }
@@ -38,8 +38,8 @@ var Constants = {
     PREFIX_WORKER_WARN     : '[WORKER][WARN]',
 
     // daemon home path file
-    DAEMON_PID_PATH       : p.resolve(ROOTPATH, 'titan.pid'),
-    DAEMON_LOG_PATH       : p.resolve(ROOTPATH, 'titan.log'),
+    DAEMON_PID_PATH       : p.resolve(ROOTPATH, 'pmt.pid'),
+    DAEMON_LOG_PATH       : p.resolve(ROOTPATH, 'pmt.log'),
     DAEMON_PRO_PORT       : p.resolve(ROOTPATH, 'protocol.sock'),
     DAEMON_EVENT_PORT     : p.resolve(ROOTPATH, 'event.sock'),
 
@@ -49,8 +49,8 @@ var Constants = {
 
 // windows 平台 处理
 if (process.platform === 'win32' ||process.platform === 'win64') {
-    Constants.TITAN_HOME = p.resolve(process.env.HOMEDRIVE, process.env.HOMEPATH, '.titan');
-    Constants.DAEMON_PID_PATH = p.resolve(Constants.TITAN_HOME, 'titan.pid'),
+    Constants.TITAN_HOME = p.resolve(process.env.HOMEDRIVE, process.env.HOMEPATH, '.pmt');
+    Constants.DAEMON_PID_PATH = p.resolve(Constants.TITAN_HOME, 'pmt.pid'),
     Constants.DAEMON_PRO_PORT = '\\\\.\\pipe\\protocol.sock';
 }
 

@@ -20,7 +20,7 @@ commander
 //commands
 commander
     .command('start [appName]')
-    .description('start description, 待根据CLI提供的api完善')
+    .description('start app')
     .action(function(appName, options) {
 
         if (typeof appName == 'undefined'){
@@ -41,6 +41,7 @@ commander
 
 commander
     .command('stop [appName]')
+    .description('stop app')
     .action(function(appName) {
         if (typeof appName == 'undefined') {
             console.log('Please input [appName]/all after stop');
@@ -53,6 +54,7 @@ commander
 
 commander
     .command('restart [appName]')
+    .description('restart app')
     .action(function(appName) {
         if (typeof appName == 'undefined') {
             console.log('Please input [appName]/all after stop');
@@ -65,6 +67,7 @@ commander
 
 commander
     .command('grestart [appName]')
+    .description('restart app gracefully')
     .action(function(appName) {
         if (typeof appName == 'undefined') {
             console.log('Please input [appName]/all after stop');
@@ -77,18 +80,21 @@ commander
 
 commander
     .command('logs')
+    .description('tail workers log')
     .action(function(appName) {
         pmt.logs();
     })
 
 commander
     .command('daemonlogs')
+    .description('tail daemon log')
     .action(function(appName) {
         pmt.daemonLogs();
     })
 
 commander
     .command('list')
+    .description('list workers info')
     .action(function() {
         pmt.getWorkers(function (err, workers){
             if (err) {
@@ -123,6 +129,7 @@ commander
 
 commander
     .command('monit')
+    .description('monit worker info')
     .action(function() {
         charm.pipe(process.stdout);
         charm.reset();

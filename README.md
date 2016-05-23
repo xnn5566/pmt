@@ -31,7 +31,7 @@ pmt.start({
     'entrance'     : 'index.js',  // your app entrance js
     'worker_count' : 0,           // worker count, 0 for cpu count, default : 0
     'args'         : '--harmony', // your app args
-    'max_momery'   : '128',       // worker max momery restart / MB, default : 128MB
+    'max_momery'   : '128',       // worker max momery restart / MB, 0 for not based on max memory to restart,default : 0
     'auto_restart' : false        // auto restart if worker stopped or errored, default : false
 },function (){
     pmt.disconnect();

@@ -29,9 +29,10 @@ var pmt = require('pmt');
 pmt.start({
     'name'         : 'myTitan',   // your app name
     'entrance'     : 'index.js',  // your app entrance js
-    'worker_count' : 2,           // worker count,0 for cpu count
+    'worker_count' : 0,           // worker count, 0 for cpu count, default : 0
     'args'         : '--harmony', // your app args
-    'max_momery'   : '128'        // worker max momery restart / MB
+    'max_momery'   : '128',       // worker max momery restart / MB, default : 128MB
+    'auto_restart' : false        // auto restart if worker stopped or errored, default : false
 },function (){
     pmt.disconnect();
 });

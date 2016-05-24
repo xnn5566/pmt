@@ -3,15 +3,15 @@ var fs = require('fs');
 
 // 定位 Titan 的运行目录
 var ROOTPATH = '';
-if (process.env.TITAN_ROOT_PATH) {
-    ROOTPATH = process.env.TITAN_ROOT_PATH;
+if (process.env.PMT_ROOT_PATH) {
+    ROOTPATH = process.env.PMT_ROOT_PATH;
 } else {
     if (process.env.HOME) {
         ROOTPATH = p.resolve(process.env.HOME, '.pmt');
     } else {
         ROOTPATH = p.resolve('/etc', '.pmt');
     }
-    process.env.TITAN_ROOT_PATH = ROOTPATH;
+    process.env.PMT_ROOT_PATH = ROOTPATH;
 }
 
 var Constants = {
@@ -46,14 +46,16 @@ var Constants = {
     // WatchDog config
     WATCHDOG_INTERVAL     : 30000,
 
-    RESTART_DELAY   : 10000
+    RESTART_DELAY   : 5000
 }
 
 // windows 平台 处理
 if (process.platform === 'win32' ||process.platform === 'win64') {
-    Constants.TITAN_HOME = p.resolve(process.env.HOMEDRIVE, process.env.HOMEPATH, '.pmt');
-    Constants.DAEMON_PID_PATH = p.resolve(Constants.TITAN_HOME, 'pmt.pid'),
+    Constants.PMT_ROOT_PATH = p.resolve(process.env.HOMEDRIVE, process.env.HOMEPATH, '.pmt');
+    Constants.DAEMON_PID_PATH = p.resolve(Constants.PMT_ROOT_PATH, 'pmt.pid'),
+    Constants.DAEMON_LOG_PATH = p.resolve(Constants.PMT_ROOT_PATH, 'pmt.log'),
     Constants.DAEMON_PRO_PORT = '\\\\.\\pipe\\protocol.sock';
+    Constants.DAEMON_EVENT_PORT = '\\\\.\\pipe\\event.sock';
 }
 
 module.exports = Constants;

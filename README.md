@@ -64,6 +64,7 @@ $ npm install pmt -g          # for easy CLI
 $ pmt start [appName]/all     # start [appName]/all when stop
 $ pmt stop [appName]/all      # stop [appName]/all
 $ pmt kill                    # kill pmt daemon
+$ pmt reboot                  # reboot pmt daemon
 $ pmt restart [appName]/all   # restart [appName]/all
 $ pmt grestart [appName]/all  # restart [appName]/all gracefully
 $ pmt list                    # list all workers status

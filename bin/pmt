@@ -40,6 +40,13 @@ commander
     });
 
 commander
+    .command('reboot [appName]')
+    .description('reboot daemon and apps')
+    .action(function() {
+        pmt.reboot(pmt.disconnect);
+    });
+
+commander
     .command('stop [appName]')
     .description('stop app')
     .action(function(appName) {

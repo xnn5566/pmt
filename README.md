@@ -6,9 +6,10 @@ PMT is a process manager for node.js.
 ## Brief
 
 - PMT is still developing.
+- PMT haven't tested in windows.
 - Will release v1.0.0 when Stable.
 - Thanks for testing.
-- If you have any suggestions, please send to 277501642@qq.com or create new issue.
+- If you have any suggestions, please send email to 277501642@qq.com or create new issue.
 
 
 ## Installation

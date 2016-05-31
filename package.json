@@ -26,9 +26,21 @@
     "url": "git+https://github.com/xnn5566/pmt.git"
   },
   "keywords": [
+    "cli",
     "process",
     "manager",
-    "socket"
+    "socket",
+    "pmt",
+    "nodejs",
+    "node-pmt",
+    "json",
+    "express",
+    "koa",
+    "pm2",
+    "forever",
+    "process manager",
+    "process monitor",
+    "cluster"
   ],
   "bugs": {
     "url": "https://github.com/xnn5566/pmt/issues"

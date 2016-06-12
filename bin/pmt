@@ -163,6 +163,13 @@ commander
 
 commander.parse(process.argv);
 
+/**
+ * colored prefix by status
+ *
+ * @param {string} status
+ * @return {string} status
+ * @api private
+ */
 function chalkStatus(status){
     if (status == cst.ONLINE_STATUS){
         return chalk.green(status);
